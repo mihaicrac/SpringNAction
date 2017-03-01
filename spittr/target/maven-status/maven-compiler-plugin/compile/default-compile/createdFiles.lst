@@ -1,4 +1,5 @@
-spittr\web\HomeController.class
+spittr\web\HomeControllerTest.class
 spittr\config\SpittrWebAppInitializer.class
 spittr\config\WebConfig.class
 spittr\config\RootConfig.class
+spittr\web\HomeController.class
