@@ -4,7 +4,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -24,8 +23,7 @@ import spittr.data.SpittleRepository;
 import spittr.web.HomeController;
 
 public class HomeControllerTest {
-	
-	
+
 	@Test
 	public void testHomePage() throws Exception {
 
@@ -46,6 +44,30 @@ public class HomeControllerTest {
 				.andExpect(model().attributeExists("spittleList"))
 				.andExpect(model().attribute("spittleList", JUnitMatchers.hasItems(expectedSpittles.toArray())));
 
+	}
+
+	@Test
+	public void shouldShowPagedSpittles() throws Exception {
+		List<Spittle> expectedSpittles = createSpittleList(50);
+		SpittleRepository mockRepository = Mockito.mock(SpittleRepository.class);
+		Mockito.when(mockRepository.findSpittles(238900, 50)).thenReturn(expectedSpittles);
+		SpittleController controller = new SpittleController(mockRepository);
+		MockMvc mockMvc = standaloneSetup(controller)
+				.setSingleView(new InternalResourceView("/WEB-INF/views/spittles.jsp")).build();
+		mockMvc.perform(get("/spittles?max=238900&count=50")).andExpect(view().name("spittles"))
+				.andExpect(model().attributeExists("spittleList"))
+				.andExpect(model().attribute("spittleList", JUnitMatchers.hasItems(expectedSpittles.toArray())));
+	}
+
+	@Test
+	public void testSpittle() throws Exception {
+		Spittle expectedSpittle = new Spittle("Hello", new Date());
+		SpittleRepository mockRepository = Mockito.mock(SpittleRepository.class);
+		Mockito.when(mockRepository.findOne(12345)).thenReturn(expectedSpittle);
+		SpittleController controller = new SpittleController(mockRepository);
+		MockMvc mockMvc = standaloneSetup(controller).build();
+		mockMvc.perform(get("/spittles/12345")).andExpect(view().name("spittle"))
+				.andExpect(model().attributeExists("spittle")).andExpect(model().attribute("spittle", expectedSpittle));
 	}
 
 	private List<Spittle> createSpittleList(int count) {

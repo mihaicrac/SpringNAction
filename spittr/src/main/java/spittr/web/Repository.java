@@ -21,4 +21,10 @@ public class Repository implements SpittleRepository {
 		return spittles;
 	}
 
+	public Spittle findOne(long spittleId) {
+		// TODO Auto-generated method stub
+		Spittle s = new Spittle("adsada", new Date());
+		return s;
+	}
+
 }

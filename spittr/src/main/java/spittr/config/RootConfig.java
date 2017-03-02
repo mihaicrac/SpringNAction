@@ -31,6 +31,11 @@ public class RootConfig {
 				}
 				return spittles;
 			}
+
+			public Spittle findOne(long spittleId) {
+				Spittle s = new Spittle("adsada", new Date());
+				return s;
+			}
 			
 		};
 	}
