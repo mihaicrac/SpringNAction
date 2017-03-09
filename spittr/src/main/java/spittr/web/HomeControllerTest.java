@@ -10,11 +10,7 @@ import java.util.List;
 
 import org.junit.Test;
 import org.junit.matchers.JUnitMatchers;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.servlet.view.InternalResourceView;
 
@@ -37,6 +33,7 @@ public class HomeControllerTest {
 		List<Spittle> expectedSpittles = createSpittleList(20);
 		SpittleRepository mockRepository = Mockito.mock(SpittleRepository.class);
 		Mockito.when(mockRepository.findSpittles(Long.MAX_VALUE, 20)).thenReturn(expectedSpittles);
+		
 		SpittleController controller = new SpittleController(mockRepository);
 		MockMvc mockMvc = standaloneSetup(controller)
 				.setSingleView(new InternalResourceView("/WEB-INF/views/spittles.jsp")).build();
@@ -51,12 +48,17 @@ public class HomeControllerTest {
 		List<Spittle> expectedSpittles = createSpittleList(50);
 		SpittleRepository mockRepository = Mockito.mock(SpittleRepository.class);
 		Mockito.when(mockRepository.findSpittles(238900, 50)).thenReturn(expectedSpittles);
+		
 		SpittleController controller = new SpittleController(mockRepository);
 		MockMvc mockMvc = standaloneSetup(controller)
 				.setSingleView(new InternalResourceView("/WEB-INF/views/spittles.jsp")).build();
 		mockMvc.perform(get("/spittles?max=238900&count=50")).andExpect(view().name("spittles"))
 				.andExpect(model().attributeExists("spittleList"))
 				.andExpect(model().attribute("spittleList", JUnitMatchers.hasItems(expectedSpittles.toArray())));
+		
+		
+		
+		
 	}
 
 	@Test

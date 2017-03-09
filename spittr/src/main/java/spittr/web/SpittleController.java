@@ -21,7 +21,7 @@ import spittr.data.SpittleRepository;
 public class SpittleController {
 	private SpittleRepository spittleRepository;
 
-	private static final String MAX_LONG_AS_STRING = Long.toString(Long.MAX_VALUE);
+	public static final String MAX_LONG_AS_STRING = Long.toString(Long.MAX_VALUE);
 
 	@Autowired
 	public SpittleController(SpittleRepository spittleRepository) {
@@ -29,8 +29,8 @@ public class SpittleController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	public List<Spittle> spittles(@RequestParam(value = "max", defaultValue = "12") long max,
-			@RequestParam(value = "count", defaultValue = "20") int count) {
+	public List<Spittle> spittles(@RequestParam(value = "max", defaultValue = "9223372036854775807") long max,
+			@RequestParam(value = "count", defaultValue = "20") int count) {	
 		return spittleRepository.findSpittles(max, count);
 	}
 
