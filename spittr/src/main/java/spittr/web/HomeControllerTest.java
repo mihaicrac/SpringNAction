@@ -11,6 +11,8 @@ import java.util.List;
 import org.junit.Test;
 import org.junit.matchers.JUnitMatchers;
 import org.mockito.Mockito;
+import org.mockito.internal.verification.AtLeast;
+import org.mockito.verification.VerificationMode;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.servlet.view.InternalResourceView;
 
@@ -81,25 +83,37 @@ public class HomeControllerTest {
 
 	@Test
 	public void shouldShowRegistration() throws Exception {
-		
-		
-		
-		
+
 		SpitterController controller = new SpitterController(new SpitterRepository() {
-			
-			public void save(Spitter spitter) {
+
+			public Spitter save(Spitter spitter) {
+				return spitter;
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			public Spitter findByUsername(String username) {
 				// TODO Auto-generated method stub
 				return null;
 			}
 		});
-		
+
 		MockMvc mockMvc = standaloneSetup(controller).build();
 		mockMvc.perform(get("/spitter/register")).andExpect(view().name("registerForm"));
+	}
+
+	@Test
+	public void shouldProcessRegistration() throws Exception {
+		SpitterRepository mockRepository = Mockito.mock(SpitterRepository.class);
+		Spitter unsaved = new Spitter("jbauer", "24hours", "Jack", "Bauer");
+		Spitter saved = new Spitter(24L, "jbauer", "24hours", "Jack", "Bauer");
+		Mockito.when(mockRepository.save(unsaved)).thenReturn(saved);
+		SpitterController controller = new SpitterController(mockRepository);
+		MockMvc mockMvc = standaloneSetup(controller).build();
+		mockMvc.perform(post("/spitter/register").param("firstName", "Jack").param("lastName", "Bauer")
+				.param("username", "jbauer").param("password", "24hours")).andExpect(redirectedUrl("/spitter/jbauer"));
+		Mockito.verify(mockRepository, Mockito.atLeast(1)).save(unsaved);
+		
 	}
 
 }

@@ -4,7 +4,7 @@ import spittr.Spitter;
 
 public interface SpitterRepository {
 
-	void save(Spitter spitter);
+	Spitter save(Spitter spitter);
 
 	Spitter findByUsername(String username);
 

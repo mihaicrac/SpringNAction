@@ -47,7 +47,8 @@ public class RootConfig {
 	public SpitterRepository spitterRepository(){
 		return new SpitterRepository(){
 
-			public void save(Spitter spitter) {
+			public Spitter save(Spitter spitter) {
+				return spitter;
 				// TODO Auto-generated method stub
 				
 			}
