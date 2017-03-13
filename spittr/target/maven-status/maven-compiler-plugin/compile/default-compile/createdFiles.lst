@@ -1,10 +1,15 @@
 spittr\web\HomeControllerTest.class
+spittr\web\HomeControllerTest$1.class
 spittr\config\WebConfig.class
 spittr\config\RootConfig.class
+spittr\config\RootConfig$2.class
 spittr\config\RootConfig$1.class
 spittr\data\SpittleRepository.class
+spittr\web\SpitterController.class
+spittr\Spitter.class
 spittr\config\SpittrWebAppInitializer.class
 spittr\web\SpittleController.class
 spittr\web\Repository.class
 spittr\web\HomeController.class
 spittr\Spittle.class
+spittr\data\SpitterRepository.class

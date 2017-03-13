@@ -14,7 +14,9 @@ import org.mockito.Mockito;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.servlet.view.InternalResourceView;
 
+import spittr.Spitter;
 import spittr.Spittle;
+import spittr.data.SpitterRepository;
 import spittr.data.SpittleRepository;
 import spittr.web.HomeController;
 
@@ -33,7 +35,7 @@ public class HomeControllerTest {
 		List<Spittle> expectedSpittles = createSpittleList(20);
 		SpittleRepository mockRepository = Mockito.mock(SpittleRepository.class);
 		Mockito.when(mockRepository.findSpittles(Long.MAX_VALUE, 20)).thenReturn(expectedSpittles);
-		
+
 		SpittleController controller = new SpittleController(mockRepository);
 		MockMvc mockMvc = standaloneSetup(controller)
 				.setSingleView(new InternalResourceView("/WEB-INF/views/spittles.jsp")).build();
@@ -48,17 +50,14 @@ public class HomeControllerTest {
 		List<Spittle> expectedSpittles = createSpittleList(50);
 		SpittleRepository mockRepository = Mockito.mock(SpittleRepository.class);
 		Mockito.when(mockRepository.findSpittles(238900, 50)).thenReturn(expectedSpittles);
-		
+
 		SpittleController controller = new SpittleController(mockRepository);
 		MockMvc mockMvc = standaloneSetup(controller)
 				.setSingleView(new InternalResourceView("/WEB-INF/views/spittles.jsp")).build();
 		mockMvc.perform(get("/spittles?max=238900&count=50")).andExpect(view().name("spittles"))
 				.andExpect(model().attributeExists("spittleList"))
 				.andExpect(model().attribute("spittleList", JUnitMatchers.hasItems(expectedSpittles.toArray())));
-		
-		
-		
-		
+
 	}
 
 	@Test
@@ -78,6 +77,29 @@ public class HomeControllerTest {
 			spittles.add(new Spittle("Spittle " + i, new Date()));
 		}
 		return spittles;
+	}
+
+	@Test
+	public void shouldShowRegistration() throws Exception {
+		
+		
+		
+		
+		SpitterController controller = new SpitterController(new SpitterRepository() {
+			
+			public void save(Spitter spitter) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			public Spitter findByUsername(String username) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+		});
+		
+		MockMvc mockMvc = standaloneSetup(controller).build();
+		mockMvc.perform(get("/spitter/register")).andExpect(view().name("registerForm"));
 	}
 
 }
