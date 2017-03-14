@@ -1,5 +1,6 @@
 spittr\web\HomeControllerTest.class
 spittr\web\HomeControllerTest$1.class
+spittr\web\SpitterRepo.class
 spittr\config\WebConfig.class
 spittr\config\RootConfig.class
 spittr\config\RootConfig$2.class

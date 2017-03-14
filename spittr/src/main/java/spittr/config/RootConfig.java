@@ -2,7 +2,9 @@ package spittr.config;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -47,18 +49,22 @@ public class RootConfig {
 	public SpitterRepository spitterRepository(){
 		return new SpitterRepository(){
 
+			HashMap <String, Spitter> db = new HashMap<String, Spitter>(); 
+			AtomicLong count = new AtomicLong(0);
+			
 			public Spitter save(Spitter spitter) {
-				return spitter;
 				// TODO Auto-generated method stub
-				
+				long id = count.incrementAndGet();
+				spitter.setId(id);
+				db.put(spitter.getUsername(), spitter);
+				return spitter;
 			}
 
 			public Spitter findByUsername(String username) {
 				// TODO Auto-generated method stub
-				return null;
+				return db.get(username);
 			}
 
-			
 		};
 	}	
 	
