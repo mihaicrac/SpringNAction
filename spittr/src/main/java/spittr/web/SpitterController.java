@@ -29,12 +29,12 @@ public class SpitterController {
 		return "registerForm";
 	}
 
-	@RequestMapping(value = "/register", method = POST)
+/*	@RequestMapping(value = "/register", method = POST)
 	public String processRegistration(Spitter spitter) {
 		spitterRepository.save(spitter);
 		return "redirect:/spitter/" + spitter.getUsername();
 	}
-
+*/
 	@RequestMapping(value = "/{username}", method = GET)
 	public String showSpitterProfile(@PathVariable String username, Model model) {
 		Spitter spitter = spitterRepository.findByUsername(username);
@@ -42,7 +42,7 @@ public class SpitterController {
 		return "profile";
 	}
 
-/*	@RequestMapping(value = "/register", method = POST)
+	@RequestMapping(value = "/register", method = POST)
 	public String processRegistration(@Valid Spitter spitter, Errors errors) {
 		if (errors.hasErrors()) {
 			return "registerForm";
@@ -50,5 +50,5 @@ public class SpitterController {
 		spitterRepository.save(spitter);
 		return "redirect:/spitter/" + spitter.getUsername();
 	}
-*/
+	
 }
