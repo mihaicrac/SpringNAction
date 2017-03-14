@@ -3,14 +3,17 @@ package spittr;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class Spitter {
 	private Long id;
 	
-
+	@NotEmpty
 	@NotNull
 	@Size(min = 5, max = 16)
 	private String username;
 	
+	@NotEmpty
 	@NotNull
 	@Size(min = 5, max = 25)
 	private String password;
@@ -60,10 +63,12 @@ public class Spitter {
 	}
 
 
+	@NotEmpty
 	@NotNull
 	@Size(min = 2, max = 30)
 	private String firstName;
 	
+	@NotEmpty
 	@NotNull
 	@Size(min = 2, max = 30)
 	private String lastName;
