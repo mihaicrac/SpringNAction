@@ -94,5 +94,22 @@ public class Spitter {
 		// TODO Auto-generated method stub
 		return username;
 	}
+	
+	public boolean equals(Object o){
+		Spitter s = ((Spitter)o);
+		if(!s.firstName.equals(this.firstName))
+			return false;
+		if(!s.lastName.equals(this.lastName))
+			return false;
+		if(!s.password.equals(this.password))
+			return false;
+		if(!s.username.equals(this.username))
+			return false;
+		if(s.id != this.id)
+			return false;
+		
+		return true;
+		
+	}
 
 }

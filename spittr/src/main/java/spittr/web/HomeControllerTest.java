@@ -11,8 +11,6 @@ import java.util.List;
 import org.junit.Test;
 import org.junit.matchers.JUnitMatchers;
 import org.mockito.Mockito;
-import org.mockito.internal.verification.AtLeast;
-import org.mockito.verification.VerificationMode;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.servlet.view.InternalResourceView;
 
@@ -112,7 +110,7 @@ public class HomeControllerTest {
 		MockMvc mockMvc = standaloneSetup(controller).build();
 		mockMvc.perform(post("/spitter/register").param("username", "jbauer").param("password", "24hours")
 				.param("firstName", "Jack").param("lastName", "Bauer")).andExpect(redirectedUrl("/spitter/jbauer"));
-//		Mockito.verify(mockRepository, Mockito.atLeast(1)).save(unsaved);
+		Mockito.verify(mockRepository, Mockito.atLeast(1)).save(unsaved);
 		
 	}
 
