@@ -1,0 +1,6 @@
+@CHARSET "ISO-8859-1";
+
+div.errors {
+	background-color: #ffcccc;
+	border: 2px solid red;
+}

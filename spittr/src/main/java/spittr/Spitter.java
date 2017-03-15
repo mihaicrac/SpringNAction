@@ -75,6 +75,7 @@ public class Spitter {
 
 	public Spitter() {
 		// TODO Auto-generated constructor stub
+		
 	}
 	
 
