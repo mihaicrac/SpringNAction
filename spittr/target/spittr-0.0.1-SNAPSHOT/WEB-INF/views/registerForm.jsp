@@ -19,7 +19,6 @@
 	<sf:form method="POST" commandName="spitter">
 	<sf:errors path="*" element="div" cssClass="errors" />
 	First Name: <sf:input path="firstName" />
-	<sf:errors path="firstName" cssClass="error" /><br/>
 		<br />
 	Last Name: <sf:input path="lastName" />
 		<br />
