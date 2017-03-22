@@ -15,7 +15,7 @@ public class SpitterRepo implements SpitterRepository{
 	public Spitter save(Spitter spitter) {
 		// TODO Auto-generated method stub
 		long id = count.incrementAndGet();
-		spitter.setId(id);
+		spitter.setId(id+"");
 		db.put(spitter.getUsername(), spitter);
 		return spitter;
 	}

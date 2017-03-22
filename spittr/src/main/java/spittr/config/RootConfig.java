@@ -3,25 +3,20 @@ package spittr.config;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
+import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScan.Filter;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
-import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
-import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
-
-import spittr.Spitter;
 import spittr.Spittle;
-import spittr.data.SpitterRepository;
 import spittr.data.SpittleRepository;
 
 @Configuration
@@ -50,45 +45,28 @@ public class RootConfig {
 		};
 	}
 
+	
 	@Bean
-	public SpitterRepository spitterRepository() {
-		return new SpitterRepository() {
-
-			HashMap<String, Spitter> db = new HashMap<String, Spitter>();
-			AtomicLong count = new AtomicLong(0);
-
-			public Spitter save(Spitter spitter) {
-				// TODO Auto-generated method stub
-				long id = count.incrementAndGet();
-				spitter.setId(id);
-				db.put(spitter.getUsername(), spitter);
-				return spitter;
-			}
-
-			public Spitter findByUsername(String username) {
-				// TODO Auto-generated method stub
-				return db.get(username);
-			}
-
-		};
+	public DataSource dataSource() {
+		DriverManagerDataSource ds = new DriverManagerDataSource();
+		ds.setDriverClassName("org.postgresql.Driver");
+		ds.setUrl("jdbc:postgresql://localhost/Spring");
+		ds.setUsername("postgres");
+		ds.setPassword("ovidiu1992");
+		return ds;
 	}
 
+	
 	@Bean
-	public TilesConfigurer tilesConfigurer() {
-		TilesConfigurer tiles = new TilesConfigurer();
-		tiles.setDefinitions(new String[] { "/WEB-INF/layout/tiles.xml" });
-		tiles.setCheckRefresh(true);
-		return tiles;
+	public JdbcTemplate jdbcTemplate(DataSource dataSource) {
+		return new JdbcTemplate(dataSource);
 	}
 
-	@Bean
-	public ViewResolver viewResolver() {
-		return new TilesViewResolver();
-	}
-
+	
 	@Bean
 	public MultipartResolver multipartResolver() throws IOException {
 		return new StandardServletMultipartResolver();
 	}
+
 
 }

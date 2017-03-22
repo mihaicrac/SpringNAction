@@ -13,7 +13,6 @@
 	<div id="header">
 		<t:insertAttribute name="header" />
 	</div>
-	asdasdas
 	<div id="content">
 		<t:insertAttribute name="body" />
 	</div>

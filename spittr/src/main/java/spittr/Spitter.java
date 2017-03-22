@@ -6,7 +6,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class Spitter {
-	private Long id;
+	private String id;
 	
 	@NotEmpty
 	@NotNull
@@ -18,12 +18,24 @@ public class Spitter {
 	@Size(min = 5, max = 25)
 	private String password;
 	
-	public Long getId() {
+	
+	@NotEmpty
+	@NotNull
+	@Size(min = 2, max = 30)
+	private String firstName;
+	
+	@NotEmpty
+	@NotNull
+	@Size(min = 2, max = 30)
+	private String lastName;
+	
+	
+	public String getId() {
 		return id;
 	}
 
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -63,15 +75,7 @@ public class Spitter {
 	}
 
 
-	@NotEmpty
-	@NotNull
-	@Size(min = 2, max = 30)
-	private String firstName;
 	
-	@NotEmpty
-	@NotNull
-	@Size(min = 2, max = 30)
-	private String lastName;
 
 	public Spitter() {
 		// TODO Auto-generated constructor stub
@@ -89,7 +93,7 @@ public class Spitter {
 	}
 
 	
-	public Spitter(long l, String username, String password, String firstName, String lastName) {
+	public Spitter(String l, String username, String password, String firstName, String lastName) {
 		// TODO Auto-generated constructor stub
 		this(username, password, firstName, lastName);
 		this.id = l;
@@ -117,5 +121,6 @@ public class Spitter {
 		return true;
 		
 	}
-
+	
+	
 }
