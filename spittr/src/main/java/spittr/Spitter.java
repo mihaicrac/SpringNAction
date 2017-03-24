@@ -1,34 +1,31 @@
 package spittr;
 
 
+import java.util.UUID;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotEmpty;
 
 
-//@Entity
+@Entity
 public class Spitter {
 	
-	 
-	private String id;
-
+	@Id @GeneratedValue(generator="system-uuid")
+	@GenericGenerator(name="system-uuid",
+	  strategy = "uuid")
 	
-	/*@Id
+//	@Id
 	@Column(name="id")
-	@GeneratedValue
-	private int idd; 
+//	@GeneratedValue
+	private String id; 
 	
-	public int getIdd() {
-		return idd;
-	}
-
-
-	public void setIdd(int idd) {
-		this.idd = idd;
-	}*/
 
 	@NotEmpty
 	@NotNull
@@ -52,6 +49,8 @@ public class Spitter {
 	private String lastName;
 	
 	
+
+
 	public String getId() {
 		return id;
 	}

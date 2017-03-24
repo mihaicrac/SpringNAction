@@ -1,6 +1,7 @@
 package spittr.web;
 
 import java.util.HashMap;
+import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
 
 import spittr.Spitter;
