@@ -12,8 +12,10 @@ spittr\config\JdbcSpitterRepository$SpitterRowMapper.class
 spittr\config\SecurityWebInitializer.class
 spittr\web\SpitterRepo.class
 spittr\config\WebConfig.class
+spittr\config\HibernateSpitterRepository.class
 spittr\Spitter.class
 spittr\web\SpittleController.class
+spittr\config\JpaSpitterRepository.class
 spittr\web\HomeController.class
 spittr\Spittle.class
 spittr\config\SecurityConfig.class

@@ -2,6 +2,7 @@ D:\SpringNAction\spittr\src\main\java\spittr\web\SpittleController.java
 D:\SpringNAction\spittr\src\main\java\spittr\web\HomeControllerTest.java
 D:\SpringNAction\spittr\src\main\java\spittr\config\SecurityConfig.java
 D:\SpringNAction\spittr\src\main\java\spittr\web\Repository.java
+D:\SpringNAction\spittr\src\main\java\spittr\config\HibernateSpitterRepository.java
 D:\SpringNAction\spittr\src\main\java\spittr\config\WebConfig.java
 D:\SpringNAction\spittr\src\main\java\spittr\Spittle.java
 D:\SpringNAction\spittr\src\main\java\spittr\web\SpitterController.java
@@ -11,6 +12,7 @@ D:\SpringNAction\spittr\src\main\java\spittr\web\SpitterRepo.java
 D:\SpringNAction\spittr\src\main\java\spittr\config\JdbcSpitterRepository.java
 D:\SpringNAction\spittr\src\main\java\spittr\data\SpittleRepository.java
 D:\SpringNAction\spittr\src\main\java\spittr\Spitter.java
+D:\SpringNAction\spittr\src\main\java\spittr\config\JpaSpitterRepository.java
 D:\SpringNAction\spittr\src\main\java\spittr\config\RootConfig.java
 D:\SpringNAction\spittr\src\main\java\spittr\data\SpitterRepository.java
 D:\SpringNAction\spittr\src\main\java\spittr\web\HomeController.java

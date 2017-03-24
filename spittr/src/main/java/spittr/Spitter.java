@@ -1,13 +1,35 @@
 package spittr;
 
+
+import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+
 import org.hibernate.validator.constraints.NotEmpty;
 
+
+//@Entity
 public class Spitter {
-	private String id;
 	
+	 
+	private String id;
+
+	
+	/*@Id
+	@Column(name="id")
+	@GeneratedValue
+	private int idd; 
+	
+	public int getIdd() {
+		return idd;
+	}
+
+
+	public void setIdd(int idd) {
+		this.idd = idd;
+	}*/
+
 	@NotEmpty
 	@NotNull
 	@Size(min = 5, max = 16)
