@@ -29,10 +29,20 @@ public class SampleController {
 	@Transactional
 	String home() {
 		
-		Spitter sp = new Spitter("asdads","sadfhfh","dghhfg","fdgfdgghgf");
+		return "Hello World!";
+	}
+	
+	
+	@RequestMapping("/save")
+	@ResponseBody
+	@Transactional
+	String save() {
+		
+		Spitter sp = new Spitter("usersdfsd","sadfhfh","dghhfg","fdgfdgghgf");
 		db.save(sp);
 		return "Hello World!";
 	}
+	
 	
 	@RequestMapping("/find/{username}")
 	@ResponseBody
